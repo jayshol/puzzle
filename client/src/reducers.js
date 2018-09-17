@@ -1,4 +1,4 @@
-import {MAKE_PUZZLE_PIECES} from './actions';
+import {MAKE_PUZZLE_PIECES, FETCH_MESSAGE_SUCCESS, FETCH_IMAGE_SUCCESS} from './actions';
 
 const initialState = {
 	pieces:[],
@@ -10,11 +10,29 @@ const initialState = {
 	{
 		id: 'signUp',
 		name: 'SignUp'		
-	}]
+	},
+	{	id: 'library',
+		name: 'Library'
+	}],
+	message: '',
+	level:[{
+		id: 1,
+		name:'Beginner'},
+		{
+			id:2,
+			level:'Intermediate'
+		},
+		{
+			id:3,
+			level: 'Expert'
+		}],
+	images:[]
 }
 
-export const puzzleReducer = (state= initialState, action) => {
+export default function reducer(state= initialState, action){
 	if(action.type === MAKE_PUZZLE_PIECES){
+		const imageUrl = action.imageUrl;
+		//console.log("hello");
 		const pieceWidth = 550 /2;
 		const pieceHeight = 550/2;
 		const maxX = parseInt(700 - pieceWidth);
@@ -25,7 +43,7 @@ export const puzzleReducer = (state= initialState, action) => {
 		for(let x=0;x<2;x++){
 			for(let y=0;y<2;y++){
 				const id = 'div-' + x + "-" + y;
-				const pos = x + '_' + y;
+				const pos = x + '_' + y;				
 
 				const pieceObject = {
 					id:id,					
@@ -35,7 +53,7 @@ export const puzzleReducer = (state= initialState, action) => {
 					left:Math.floor(Math.random()*(maxY+1)),
 					top:Math.floor(Math.random()*(maxX+1)),
 					zIndex: Math.floor(Math.random()*10+1),
-					backgroundImage: 'url(/images/clover.jpg)',
+					backgroundImage: 'url('+ imageUrl +')',
 					backgroundPosition: (-y*pieceWidth)+'px '+(-x*pieceHeight)+'px',
 					backgroundSize: '550px'	
 				}
@@ -56,6 +74,20 @@ export const puzzleReducer = (state= initialState, action) => {
 		return Object.assign({}, state, {
 			pieces:totPieces,
 			slots:slots
+		});
+	}
+
+	if(action.type === FETCH_MESSAGE_SUCCESS){
+		console.log(action.message.message);
+		return Object.assign({}, state, {
+			message: action.message.message
+		});
+	}
+
+	if(action.type === FETCH_IMAGE_SUCCESS){
+		console.log(action.images);
+		return Object.assign({}, state, {
+			images: action.images
 		});
 	}
 

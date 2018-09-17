@@ -1,11 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import './login.css';
+import LoginForm from './loginForm';
 
 export function Login(){
 
 	return(
-
-		<div>Login</div>
+		<section className="login-window homeCls">
+			<LoginForm />	
+		</section>
 	)
 
 }

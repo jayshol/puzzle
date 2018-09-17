@@ -1,0 +1,13 @@
+.homeCls{
+	height: 94vh;
+	width:100%;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bannerCls{
+	font-size: 68px;	
+	margin:0;
+	padding:0;
+}

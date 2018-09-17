@@ -44,6 +44,8 @@
 }
 .outerDiv{
 	position:relative;
+	height:94vh;
+	background-color: white;
 }
 
 #slotsSpan{

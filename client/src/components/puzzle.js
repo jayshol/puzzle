@@ -14,6 +14,11 @@ export class Puzzle extends React.Component{
 		this.handleDragOver = this.handleDragOver.bind(this);
 	}
 
+	componentDidMount(){
+		//console.log("did mount");
+		this.props.dispatch(makePuzzlePieces(this.props.image.url));
+	}
+
 	startGame(e){
 		this.props.dispatch(makePuzzlePieces());
 		
@@ -59,20 +64,20 @@ export class Puzzle extends React.Component{
 
 
 	render() {
-		const pieces = this.state.pieces.map((piece, index) => {
+		const pieces = this.props.pieces.map((piece, index) => {
 			return <PuzzlePiece key={index} index={index} {...piece} handleDrag={this.handleDragStart} />
-		});
-		console.log(pieces);
+		}); 
+		//console.log(this.props.image.url);
 		return (
 			<div className="outerDiv">
 				<div id="wrapperDiv" className="wrapperDiv" onDrop={this.handleDrop} onDragOver={this.handleDragOver}>
 					<div className="ImageDiv">
-						<img className="imageCls" src={process.env.PUBLIC_URL +'/images/clover.jpg'} alt="image"/>
+						<img className="imageCls" src={process.env.PUBLIC_URL +`${this.props.image.url}`} alt="image"/>
 						<div className="piecesContainer">							
-							{pieces}
+							{ pieces }  
 						</div>
 						<span id="slotsSpan">
-							{this.state.slots}
+							{/* this.state.slots */}
 						</span>											
 					</div>
 				</div>
@@ -82,4 +87,13 @@ export class Puzzle extends React.Component{
 	}
 }
 
-export default connect()(Puzzle);
+const mapStateToProps = (state , props) => {	
+	const image = state.puzzle["images"].find(image => image.name === props.match.params.imageName);
+	console.log(image.name);
+	return {
+		image : image,
+		pieces:state.puzzle.pieces
+	}
+};
+
+export default connect(mapStateToProps)(Puzzle);
