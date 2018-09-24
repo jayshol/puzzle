@@ -1,9 +1,23 @@
 import {API_BASE_URL} from './config';
 
 export const MAKE_PUZZLE_PIECES = 'MAKE_PUZZLE_PIECES';
-export const makePuzzlePieces = (url) => ({
+export const makePuzzlePieces = (url, width, height, level) => ({
 	type: MAKE_PUZZLE_PIECES,
-	imageUrl: url
+	imageUrl: url,
+	imageWidth:width,
+	imageHeight:height,
+	level:level
+});
+
+export const REMOVE_PUZZLE_PIECE = 'REMOVE_PUZZLE_PIECE';
+export const removePuzzlePiece = (id) => ({
+	type:REMOVE_PUZZLE_PIECE,
+	pieceId:id
+});
+
+export const CLEAR_PIECES_COUNT = 'CLEAR_PIECES_COUNT';
+export const clearPiecesCount = () => ({
+	type: CLEAR_PIECES_COUNT	
 });
 
 export const FETCH_MESSAGE_SUCCESS = 'FETCH_MESSAGE_SUCCESS';

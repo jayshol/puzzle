@@ -54,7 +54,7 @@ export class PuzzleGame extends React.Component{
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signUp" component={SignUp} />
                             <Route exact path="/library" component={Library} />
-                            <Route exact path="/puzzle/:imageName" component={Puzzle} />
+                            <Route exact path="/puzzle/:imageName/:level" component={Puzzle} />
                         </Switch>
                     </main>
                 </div>

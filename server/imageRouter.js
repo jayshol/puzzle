@@ -15,4 +15,9 @@ router.get('/images', (req, res) => {
 	});
 });
 
+router.post('/', (req, res) => {
+	console.log(req.user);
+	res.json({message:'hello'});
+});
+
 module.exports = {router};

@@ -31,10 +31,8 @@ app.use('/api/auth/', authRouter);
 app.use('/api/library/', imageRouter);
 const jwtAuth = passport.authenticate('jwt', {session:false});
 
-/*
-app.get('/api/library', (req, res) => {
-	res.json({message:'hello'});
-}); */
+
+ 
 
 app.use("*", function(req, res){
 	res.status(404).json({message: 'Not Found'});

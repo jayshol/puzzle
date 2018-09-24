@@ -41,16 +41,17 @@ const storeAuthInfo = (authToken, dispatch) => {
     saveAuthToken(authToken);
 };
 
-export const login = (userName, password) => dispatch => {
-    dispatch(authRequest());    
+export const login = (username, password) => dispatch => {
+    dispatch(authRequest());
     return (
         fetch(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             headers: {
-                'content-Type': 'application/json'
+                'Content-Type': 'application/json'                
             },
             body: JSON.stringify({
-                message: 'hello'
+                username,
+                password
             })
         })
             // Reject any requests which don't return a 200 status, creating

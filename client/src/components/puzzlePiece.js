@@ -14,6 +14,12 @@ export default function PuzzlePiece(props){
 		backgroundSize:props.backgroundSize
 	}
 	return(
-		<div id={props.id} className="pieceStyle" draggable style={styleObject} data-pos={props.pos} onDragStart={e=>props.handleDrag(e, props.id)}></div>
+		<div id={props.id} 
+			className="pieceStyle" 
+			style={styleObject} 
+			data-pos={props.pos}
+			draggable 
+			onDragStart={e=>props.handleDrag(e, props.id)} >
+		</div>
 	);
 }

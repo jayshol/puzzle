@@ -7,7 +7,7 @@ import './loginForm.css';
 
 export class LoginForm extends React.Component{
 	onSubmit(values) {
-        return this.props.dispatch(login(values.userName, values.password));
+        return this.props.dispatch(login(values.username, values.password));
     }
 	render(){
 		 let error;
@@ -26,12 +26,12 @@ export class LoginForm extends React.Component{
                 {error}
 				<fieldset>
 					<legend>Login</legend>
-					<label htmlFor="userName">UserName</label>
+					<label htmlFor="username">Username</label>
 	                <Field
 	                    component={Input}
 	                    type="text"
-	                    name="userName"
-	                    id="userName"
+	                    name="username"
+	                    id="username"
 	                    validate={[required, nonEmpty]}
 	                />
 	                <label htmlFor="password">Password</label>
