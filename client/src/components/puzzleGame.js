@@ -9,6 +9,8 @@ import SignUp from './signUp';
 import Puzzle from './puzzle';
 import Library from './library';
 import Home from './home';
+import Logout from './logout';
+import Dashboard from './dashboard';
 import {refreshAuthToken} from '../actions/auth';
 import {connect} from 'react-redux';
 import './puzzleGame.css';
@@ -53,7 +55,9 @@ export class PuzzleGame extends React.Component{
                             <Route exact path="/home" component={Home} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signUp" component={SignUp} />
+                            <Route exact path="/dashboard" component={Dashboard} />
                             <Route exact path="/library" component={Library} />
+                            <Route exact path="/logout" component={Logout} />
                             <Route exact path="/puzzle/:imageName/:level" component={Puzzle} />
                         </Switch>
                     </main>

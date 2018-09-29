@@ -10,12 +10,13 @@ const { JWT_SECRET } = require('../config');
 
 const localStrategy = new LocalStrategy((username, password, callback) => {
   let user;
-  User.findOne({ username: username })
+  console.log(username);
+  User.findOne({ userName: username })
     .then(_user => {
-      user = _user;
+      user = _user;      
       if (!user) {
         // Return a rejected promise so we break out of the chain of .thens.
-        // Any errors like this will be handled in the catch block.
+        // Any errors like this will be handled in the catch block.        
         return Promise.reject({
           reason: 'LoginError',
           message: 'Incorrect username or password'

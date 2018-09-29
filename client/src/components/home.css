@@ -1,9 +1,9 @@
 .homeCls{
 	height: 94vh;
 	width:100%;
-	display:grid;
+	/*display:grid;
 	align-items: center;
-	justify-content: center;
+	justify-content: center; */
 }
 
 .bannerCls{

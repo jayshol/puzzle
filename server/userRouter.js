@@ -115,7 +115,7 @@ router.post('/signup', jsonParser, (req, res) => {
 
 });
 
-router.delete('/remove/:id', jwtAuth, (req, res) => {
+router.delete('/remove/:userId', jwtAuth, (req, res) => {
 		User
 		.findByIdAndRemove(req.params.id)
 		.then(user => res.status(204).end())
@@ -125,9 +125,9 @@ router.delete('/remove/:id', jwtAuth, (req, res) => {
 		});
 });
 
-router.get('/:id',jwtAuth, (req, res) => {
+router.get('/:userName',jwtAuth, (req, res) => {
 		User
-		.findById(req.params.id)		
+		.find({userName:req.params.userName})		
 		.then(user => res.json(user))
 		.catch(err => {
 			console.log(err);
@@ -144,21 +144,14 @@ router.put('/:id', jwtAuth, (req, res) => {
 	}
 
 	const toUpdate = {};
-/*	const updatableFields = ['registeredForCurrenttChallenge',
-							 'lastMeditated',
-							 'streak',
-							 'active',
-							 'isRegisteredForNextChallenge',
-							 'numberOfDaysMeditated',
-							 'badges',
-							 'registeredChallenges'];
+	const updatableFields = ['solvedPuzzles'];
 
 	updatableFields.forEach(field => {
 		if(field in req.body){
 			toUpdate[field] = req.body[field];
 		}
 	});
-	console.log(toUpdate); */
+	console.log(toUpdate); 
 	User
 	.findByIdAndUpdate(req.body._id, {$set : toUpdate})
 	.then(user => res.status(201).json(user))

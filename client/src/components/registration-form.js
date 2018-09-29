@@ -13,6 +13,12 @@ const matchesPassword = matches('password');
 
 
 export class RegistrationForm extends React.Component{
+	constructor(props){
+		super(props);
+		this.state={
+			signedup:false
+		}
+	}
 
 	onSubmit(values) {
         const {userName, password} = values;
@@ -20,14 +26,20 @@ export class RegistrationForm extends React.Component{
         console.log(user);
         return this.props
             .dispatch(registerUser(user))
-            .then(() => this.props.dispatch(login(userName, password)));
+            .then(() => this.moveToLogin());
     }
 
     moveToLogin(){
-    	<Redirect to="/login" push />;
+    	this.setState({
+    		signedup:true
+    	});    	
     }
 
 	render(){
+		if(this.state.signedup){
+			return <Redirect to="/login" />;
+		}
+
 		return(
 			<form role="form" className="signUpForm" 
 				onSubmit={this.props.handleSubmit(values =>this.onSubmit(values))}>

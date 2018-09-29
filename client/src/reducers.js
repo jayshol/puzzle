@@ -2,25 +2,38 @@ import {MAKE_PUZZLE_PIECES,
 		FETCH_MESSAGE_SUCCESS, 
 		FETCH_IMAGE_SUCCESS, 
 		REMOVE_PUZZLE_PIECE,
-		CLEAR_PIECES_COUNT } from './actions';
+		CLEAR_PIECES_COUNT,
+		FETCH_USER_SUCCESS,
+		UPDATE_USER_SUCCESS,
+		AUTH_ERROR,
+		REMOVE_SLOT_PIECES } from './actions';
 
 const initialState = {
 	pieces:[],
 	slots:[],
 	menuItems:[{
 		id: 'login',
-		name: 'Login'		
+		name: 'Login',
+		loggedIn:false		
 	},
 	{
 		id: 'signUp',
-		name: 'SignUp'		
-	},
-	{	id: 'library',
-		name: 'Library'
+		name: 'SignUp',
+		loggedIn:false		
 	},
 	{
-		id:'puzzle/Clover',
-		name:'Puzzle'
+		id:'dashboard',
+		name: 'Dashboard',
+		loggedIn:true
+	},
+	{	id: 'library',
+		name: 'Library',
+		loggedIn:true
+	},
+	{
+		id:'logout',
+		name:'Logout',
+		loggedIn:true
 	}],
 	message: '',
 	levels:[{
@@ -38,7 +51,9 @@ const initialState = {
 			rowColNumber:4
 		}],
 	images:[],
-	piecesCount:0
+	piecesCount:0,
+	user:{},
+	error:null
 }
 
 export default function reducer(state= initialState, action){
@@ -116,12 +131,20 @@ export default function reducer(state= initialState, action){
 	}
 
 	if(action.type === REMOVE_PUZZLE_PIECE){
-		const id = action.pieceId;
+		const id = action.pieceId;			
 		const pieces = state.pieces.filter((piece, index) => {
 			return piece.id !== id;
-		});
+		});		
+		
 		return Object.assign({}, state, {
-			pieces:pieces
+			pieces:pieces			
+		});
+
+	}
+
+	if(action.type === REMOVE_SLOT_PIECES){		
+		return Object.assign({}, state, {
+			slots: []
 		});
 	}
 
@@ -145,5 +168,24 @@ export default function reducer(state= initialState, action){
 		});
 	}
 
+	if(action.type === FETCH_USER_SUCCESS){
+		console.log(action.user);
+		return Object.assign({}, state, {
+			user:action.user[0]
+		});
+	}
+
+	if(action.type == UPDATE_USER_SUCCESS){
+		console.log(action.user);
+		return Object.assign({}, state, {
+			user: action.user
+		});
+	}
+
+	if (action.type === AUTH_ERROR) {
+        return Object.assign({}, state, {            
+            error: action.error
+        });
+    }
 	return state;
 }

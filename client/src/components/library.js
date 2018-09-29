@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './library.css';
+import requiresLogin from './requiresLogin';
 
 import {fetchMessage, fetchImages} from '../actions';
 
@@ -89,4 +90,4 @@ const mapStateToProps = state => ({
 	imageList: state.puzzle['images']
 });
 
-export default connect(mapStateToProps)(Library);
+export default requiresLogin()(connect(mapStateToProps)(Library));

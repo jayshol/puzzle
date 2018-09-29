@@ -4,13 +4,18 @@ import {Link} from 'react-router-dom';
 import './topNav.css';
 
 export function TopNav(props){
-	const menuItems = props.menuItems.map(menuItem => 
-		<li key={menuItem.id}>
-			<Link className="linkCls" to={`/${menuItem.id}`}>
-				{menuItem.name}
-			</Link>
-		</li>
-	);
+	const menuItems = props.menuItems.map(menuItem => {
+		// filter menuitems based on status of login
+		if((menuItem.loggedIn === props.loggedIn)){
+			return (<li key={menuItem.id}>
+					<Link className="linkCls" to={`/${menuItem.id}`}>
+						{menuItem.name}
+					</Link>
+				</li>);
+		}
+
+		
+	});
 
 	return (
 		<header className="container" role="banner">
@@ -24,7 +29,8 @@ export function TopNav(props){
 }
 
 const mapStateToProps = state => ({
-	menuItems : state.puzzle['menuItems']
+	menuItems : state.puzzle['menuItems'],
+	loggedIn : state.auth.currentUser !== null
 });
 
 export default connect(mapStateToProps)(TopNav);

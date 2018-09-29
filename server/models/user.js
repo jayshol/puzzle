@@ -5,7 +5,13 @@ mongoose.Promise = global.Promise;
 
 const userSchema = mongoose.Schema({
 	userName: {type: String, required: true, unique:true},
-	password: {type: String, required: true}
+	password: {type: String, required: true},
+	solvedPuzzles:[{
+		puzzleName:{type: String, required:true},
+		expertLevel:{type:Number, required:true},
+		timeTaken:{type: Number, required:true},
+		dateSolved:{type:Date, required:true}
+	}]
 });
 
 userSchema.methods.serialize = function(){
