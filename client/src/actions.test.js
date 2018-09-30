@@ -21,5 +21,6 @@ describe('makePuzzlePieces', () => {
 		expect(action.imageUrl).toEqual(url);
 		expect(action.imageWidth).toEqual(width);
 		expect(action.imageHeight).toEqual(height);
+		expect(action.level).toEqual(level);
 	});
 });
