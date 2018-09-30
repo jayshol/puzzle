@@ -37,48 +37,50 @@ export class Library extends React.Component{
 		console.log(this.props.imageList);
 		return	(			
 			<div className="homeCls">
-				<div className="optionsDiv">
-					<fieldset className="levelsFieldset">
-						<label htmlFor="level1" className="optionLabel">
-							<input 
-								type="radio" 
-								id="level1" 
-								name="level" 
-								value="1" 
-								required
-								onChange={this.handleOnChange} 
-								aria-labelledby="levelGroup level1"  
-								checked={this.state.level === '1'} />
-							Beginner
-						</label>
-						<label htmlFor="level2" className="optionLabel">
-							<input 
-								type="radio" 
-								id="level2" 
-								name="level" 
-								value="2" 
-								required
-								onChange={this.handleOnChange}  
-								aria-labelledby="levelGroup level2"
-								checked={this.state.level === '2'} />
-							Intermediate
-						</label>
-						<label htmlFor="level3" className="optionLabel">
-							<input 
-								type="radio" 
-								id="level3" 
-								name="level" 
-								value="3" 
-								required
-								onChange={this.handleOnChange}  
-								aria-labelledby="levelGroup level3" 
-								checked={this.state.level === '3' }/>
-							Expert
-						</label>
-					</fieldset>				
-				</div>
-				<div>
-					{images}
+				<div className="content">
+					<div className="optionsDiv">
+						<fieldset className="levelsFieldset">
+							<label htmlFor="level1" className="optionLabel">
+								<input 
+									type="radio" 
+									id="level1" 
+									name="level" 
+									value="1" 
+									required
+									onChange={this.handleOnChange} 
+									aria-labelledby="levelGroup level1"  
+									checked={this.state.level === '1'} />
+								Beginner
+							</label>
+							<label htmlFor="level2" className="optionLabel">
+								<input 
+									type="radio" 
+									id="level2" 
+									name="level" 
+									value="2" 
+									required
+									onChange={this.handleOnChange}  
+									aria-labelledby="levelGroup level2"
+									checked={this.state.level === '2'} />
+								Intermediate
+							</label>
+							<label htmlFor="level3" className="optionLabel">
+								<input 
+									type="radio" 
+									id="level3" 
+									name="level" 
+									value="3" 
+									required
+									onChange={this.handleOnChange}  
+									aria-labelledby="levelGroup level3" 
+									checked={this.state.level === '3' }/>
+								Expert
+							</label>
+						</fieldset>				
+					</div>
+					<div className="imagesDiv">
+						{images}
+					</div>
 				</div>
 			</div>
 		)	

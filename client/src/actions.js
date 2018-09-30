@@ -1,5 +1,8 @@
 import {API_BASE_URL} from './config';
 import {normalizeResponseErrors} from './actions/utils';
+import {clearAuthToken} from './local-storage';
+import {clearAuth, CLEAR_AUTH} from './actions/auth';
+
 
 
 export const MAKE_PUZZLE_PIECES = 'MAKE_PUZZLE_PIECES';
@@ -12,9 +15,10 @@ export const makePuzzlePieces = (url, width, height, level) => ({
 });
 
 export const REMOVE_PUZZLE_PIECE = 'REMOVE_PUZZLE_PIECE';
-export const removePuzzlePiece = (id) => ({
+export const removePuzzlePiece = (id, slotId) => ({
 	type:REMOVE_PUZZLE_PIECE,
-	pieceId:id	
+	pieceId:id,
+	slotId: slotId	
 });
 
 export const REMOVE_SLOT_PIECES = 'REMOVE_SLOT_PIECES';
@@ -103,6 +107,11 @@ export const authError = error => ({
     error
 });
 
+const clearUserInfo = (dispatch) => {
+	dispatch(clearAuth());
+    clearAuthToken();
+}
+
 export const updateUser = (userObject, userId) => (dispatch, getState) => {
 	console.log(JSON.stringify(userObject));
 	const authToken = getState().auth.authToken;
@@ -117,6 +126,22 @@ export const updateUser = (userObject, userId) => (dispatch, getState) => {
 	.then(res => normalizeResponseErrors(res))
 	.then(res => res.json())
 	.then(user => dispatch(updateUserSuccess(user)))
+	.catch(err => {
+		dispatch(authError(err));
+	});
+}
+
+export const deleteUser = (userId) => (dispatch, getState) => {
+	const authToken = getState().auth.authToken;
+	fetch(`${API_BASE_URL}/users/remove/${userId}`, {
+		method : 'DELETE',
+		headers:{
+			Authorization: `Bearer ${authToken}`
+		}
+	})
+	.then(res => normalizeResponseErrors(res))
+	.then(res => res.json())
+	.then(() => clearUserInfo(dispatch))
 	.catch(err => {
 		dispatch(authError(err));
 	});

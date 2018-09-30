@@ -131,13 +131,19 @@ export default function reducer(state= initialState, action){
 	}
 
 	if(action.type === REMOVE_PUZZLE_PIECE){
-		const id = action.pieceId;			
+		const id = action.pieceId;
+		const slotId = action.slotId;			
 		const pieces = state.pieces.filter((piece, index) => {
 			return piece.id !== id;
+		});
+
+		const slots = state.slots.filter((slot, index) => {
+			return slot.id !== slotId;
 		});		
 		
 		return Object.assign({}, state, {
-			pieces:pieces			
+			pieces:pieces,
+			slots:slots			
 		});
 
 	}

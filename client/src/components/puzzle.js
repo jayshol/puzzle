@@ -45,14 +45,13 @@ export class Puzzle extends React.Component{
 		}), 1000);
 	}
 
-	reStartGame(e){
-		this.props.dispatch(removeSlotPieces());
+	reStartGame(e){		
 		this.setState({
 			time:0,
 			result:''
-		})
-		this.props.dispatch(makePuzzlePieces(this.props.image.url, this.width, this.height, this.props.level));
-		//this.props.dispatch(removeSlotPieces());
+		});
+		this.count = 0;
+		this.props.dispatch(makePuzzlePieces(this.props.image.url, this.width, this.height, this.props.level));		
 		this.startTimer();
 	}
 
@@ -65,10 +64,10 @@ export class Puzzle extends React.Component{
 		console.log(id);
 		const element = document.getElementById(id);
 		console.log(element);
-		console.log();
+		console.log("in drop");
 		if(event.currentTarget.id.split("slot-")[1] === id.split("div-")[1]){
-			event.currentTarget.style.opacity = 0;
-			this.props.dispatch(removePuzzlePiece(id));
+			//event.currentTarget.style.opacity = 0;
+			this.props.dispatch(removePuzzlePiece(id, event.currentTarget.id));
 			this.count += 1;
 			
 			console.log(this.count);
@@ -76,7 +75,7 @@ export class Puzzle extends React.Component{
 		if(this.count === this.props.piecesCount){
 			clearInterval(this.timer);
 			this.setState({
-				result: 'Congratulations. You solved the puzzle.' + this.state.time + 'seconds.'
+				result: 'Congratulations. You solved the puzzle ' + this.state.time + ' seconds.'
 			});
 			const puzzleObject = {
 				puzzleName: this.props.image.name,

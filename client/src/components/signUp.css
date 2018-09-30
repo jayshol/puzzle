@@ -1,11 +1,12 @@
 .signUpForm{
 	color: black;
 	font-size: 20px;
-	background-color: #a4adb2;
+	background-color: rgba(255,255,255,0.7);
 	border-radius: 10px;
 	width: 350px;
 	height: 400px;	
-	padding: 35px 15px 35px 15px;	
+	padding: 35px 15px 35px 15px;
+	border: 1px solid blue;	
 }
 
 #signUp-form{
@@ -47,4 +48,14 @@ label{
 
 .centerDiv{
 	text-align: center;
+}
+
+@media only screen and (max-device-width: 480px), 
+	   only screen and (min-device-width: 560px)	   
+	   and (-webkit-min-device-pixel-ratio: 2) {
+
+	.signUpForm{
+		width: 288px;
+		height:350px;
+	}
 }

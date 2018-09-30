@@ -115,7 +115,7 @@ router.post('/signup', jsonParser, (req, res) => {
 
 });
 
-router.delete('/remove/:userId', jwtAuth, (req, res) => {
+router.delete('/remove/:id', jwtAuth, (req, res) => {		
 		User
 		.findByIdAndRemove(req.params.id)
 		.then(user => res.status(204).end())
