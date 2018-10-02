@@ -2,6 +2,13 @@ llanguage: node_js
 node_js: node
 cache:
   directories:
-    - node_modules
+  - node_modules
 env:
-  - CI=true
+- CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZOaLemT3k2MljhQ1W34LDCMiRKbgPy3vsPLV66rDNprS5DNu02ig6by470CcowTnvSxZivXr1wGnnakGx0ixqRoifoIGMIUSKseejXNFkj/mtNrcjqNT1ugggiclVKL3Ga3iKuEQFjfCgeRK3SVc9yShXTUGMYfzFFhdQ4f7XtbSLEpkdvTVtYj5lLyPvAFVsvmhXPUkhVTETFfIY8QwHa5XRdurZP6msr8H0SE2QM9lDnASxnbCYh1PLMeeiXhpofTI7ubTLIdqOll/jZ8/62FpH+MPM3DkKrAvilzNwB19FMEf2EetTU3Za4OBoUmd3NPHibtLU5tMPK4w7ctnnI7xUwZ0HxtZ6iRCXvbnaSWvTL5xyq7geU6WK9HRbOUbvO5Thx9rSxVRkoeWfMmRGz7p10n4+3F4xvSIDUwRXpus89efdLyuybSPvUyOQXbC7TuXv4dieftteAntBBIWGKoGZ5H6dFOC0aIuQjee4W1MoiUxXOxDOdvuQyq3DWWjsXHTHc7eRhK1Ub1R2brBnWpUAqnTm3T3xWdwExB8F7ynWJ0wVZuCGXmTV02VBn8ZkiWMdr6tHgI+pEObc0OI0QWVT3l0iI92lb/Svl3TIV1PAxM1vFTnxjHWDl6A2YiZQM3h97dUPp3sHSHc1apPWChrBP1wpFQQvUP/6DAR/bE=
+  app: powerful-escarpment-20247
+  on:
+    repo: jayshol/puzzle
